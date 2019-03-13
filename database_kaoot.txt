@@ -1,0 +1,63 @@
+
+USER
+=====
+create table users(
+user_id serial primary key,
+username varchar(50) unique not null,
+password varchar(50) not null,
+email varchar(50) unique not null
+);
+
+QUIZZES
+=======
+create table quizzes(
+quiz_id serial primary key,
+creator_id integer not null,
+quiz_name varchar(100) not null,
+quiz_catagory varchar(100) not null,
+foreign key (creator_id) references users (user_id)
+);
+
+QUESTION
+========
+create table questions(
+quiz_id integer,
+question_id integer primary key,
+question_number integer,
+question varchar(100) not null,
+answer varchar(10),
+foreign key (quiz_id) references quizzes (quiz_id)
+);
+
+OPTIONS LIST
+============    
+
+create table option_list(
+question_id integer,
+option_id integer primary key,
+A varchar(100),
+B varchar(100),
+C varchar(100),
+D varchar(100), 
+foreign key (question_id) references questions (question_id)
+);
+
+GAME 
+=====
+create table game(
+game_pin integer primary key,
+quiz_id integer not null,
+foreign key (quiz_id) references quizzes (quiz_id)
+);
+
+LEADERBOARD
+===========
+create table leaderboard(
+game_pin integer not null,
+score integer,
+player_name varchar(50) primary key,
+foreign key (game_pin) references game (game_pin)
+);
+
+
+

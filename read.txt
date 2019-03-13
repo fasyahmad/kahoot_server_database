@@ -1,0 +1,25 @@
+INSTALL FLASK
+=============
+1. buat environment
+    python -m venv .\
+2.  aktivasi scripst
+    Scripst\activate.bat
+3. buat file python
+    ex: app.py
+4. instal flask
+    pip install flask
+5. template flask = app.py
+    '''
+            from flask import Flask
+            app = Flask(__name__)
+
+            @app.route("/")
+            def hello():
+                return "Hello World!"
+    '''
+6. set file py
+    set FLASK_APP=app.py
+7. set environment
+    set FLASK_ENV=development
+8. running file py
+    flask run
